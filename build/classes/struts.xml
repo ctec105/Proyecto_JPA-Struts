@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="inicios" extends="struts-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+			<result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+		</result-types>
+		
+		<action name="inicio" class="proyecto.struts.action.LinkAction">
+			<result name="success" type="tiles">welcome</result>
+		</action>
+		<action name="locale" class="proyecto.struts.action.LocaleAction">
+			<result name="success" type="redirect">${url}</result>
+		</action>
+		<action name="index" class="proyecto.struts.action.LogueoAction" method="index">
+			<result name="success">logueo.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="logueo" class="proyecto.struts.action.LogueoAction">
+			<result name="success" type="redirectAction">inicio</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="CerrarSession" class="proyecto.struts.action.LogueoAction" method="CerrarSession">
+			<result name="success">logueo.jsp</result>
+			<result name="error" >logueo.jsp</result>
+		</action>
+
+		
+		<!-- Acciones para los popups de Mantenimiento de Paquete - INI -->
+		<action name="popBuscarHerramienta"	class="proyecto.struts.action.PaqueteDetAction" method="popBuscarHerramienta">
+			<result name="success">/portal/buscar/BuscarHerramienta.jsp</result>
+			<result name="error">/portal/buscar/BuscarHerramienta.jsp</result>
+		</action>
+		<action name="popBuscarActividad" class="proyecto.struts.action.PaqueteDetAction" method="popBuscarActividad">
+			<result name="success">/portal/buscar/BuscarActividad.jsp</result>
+			<result name="error">/portal/buscar/BuscarActividad.jsp</result>
+		</action>
+		<action name="popBuscarMaterial" class="proyecto.struts.action.PaqueteDetAction" method="popBuscarMaterial">
+			<result name="success">/portal/buscar/BuscarMaterial.jsp</result>
+			<result name="error">/portal/buscar/BuscarMaterial.jsp</result>
+		</action>
+		<!-- Acciones para los popups de Mantenimiento de Paquete - FIN -->
+	
+	
+		<!-- Acciones para los popups de Orden de liquidación - INI  -->
+		<action name="popBuscarCliente"	class="proyecto.struts.action.ClienteAction" method="popBuscarCliente">
+			<result name="success">/portal/buscar/BuscarCliente.jsp</result>
+			<result name="error">/portal/buscar/BuscarCliente.jsp</result>
+		</action>
+		<!-- Acciones para los popups de Orden de liquidación - FIN  -->
+		
+		
+		<!-- Acciones para los popups de Prefactura - INI  -->
+		<action name="popBuscarLiquidacion"	class="proyecto.struts.action.LiquidacionAction" method="popBuscarLiquidacion">
+			<result name="success">/portal/buscar/BuscarOrdenLiquidacion.jsp</result>
+			<result name="error">/portal/buscar/BuscarOrdenLiquidacion.jsp</result>
+		</action>
+		<!-- Acciones para los popups de Prefactura - FIN  -->
+		
+	
+		
+		 
+		<action name="reporte1" class="proyecto.struts.action.ReporteAction" method="reporte1"  >
+			<result name="frm" type="tiles">reportes</result>
+			<result  name="success" type="jasper">
+	    		 <param name="location">/portal/reportes/report1.jasper</param>	  
+				 <param name="dataSource">reporte</param>		    
+				 <param name="contentDisposition">attachment;filename="contacts.pdf"</param>
+	             <param name="format">PDF</param>
+			 </result>	
+		</action>
+		<action name="reporte2" class="proyecto.struts.action.ReporteAction" method="reporte2" >
+			<result name="frm" type="tiles">reportes</result>
+			<result  name="success" type="jasper">
+	    		 <param name="location">/portal/reportes/report7.jasper</param>	  
+				 <param name="dataSource">reporte2</param>		    
+				 <param name="contentDisposition">attachment;filename="contacts.pdf"</param>
+	             <param name="format">PDF</param>
+			 </result>	
+		</action>
+	</package>
+
+
+	<package name="default" extends="struts-default">
+		<result-types>
+			<result-type name="tiles"  class="org.apache.struts2.views.tiles.TilesResult" />
+			<result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+		</result-types>
+		
+		<interceptors>
+		  <interceptor name="authenticationInterceptor" class="proyecto.struts.interceptor.AuthenticationInterceptor"/>                
+		     <interceptor-stack name="all-default">
+		     <interceptor-ref name="authenticationInterceptor" />
+		     <interceptor-ref name="defaultStack"/>
+		  </interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="all-default"  />
+		
+		<global-results>
+			<result name="error">sinSession.jsp</result>
+		</global-results>
+		
+		<action name="permisos"	class="proyecto.struts.action.PermisosAction">
+			<result name="success" type="tiles">permisos</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="permisosList"	class="proyecto.struts.action.PermisosAction" method="permisosList">
+			<result name="success" type="tiles">permisos</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		
+		
+		<!-- Acciones para Tabla Solicitud de Servicio - INI -->
+		<action name="solicitudes" class="proyecto.struts.action.SolicitudAction" method="ListaSolicitudes">
+			<result name="success" type="tiles">solicitudList</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="solicitud" class="proyecto.struts.action.SolicitudAction">
+			<result name="success" type="tiles">solicitud</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="insertaSolicitud"	class="proyecto.struts.action.SolicitudAction" method="InsertaActualizaSolicitud">
+			<result name="success" type="redirectAction">solicitudes</result>
+			<result name="error" type="tiles">solicitud</result>
+		</action>
+		<action name="eliminarSolicitud" class="proyecto.struts.action.SolicitudAction" method="EliminaSolicitud">
+			<result name="success" type="redirectAction">solicitudes</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Acciones para Tabla Solicitud de Servicio - FIN -->
+		
+		<!-- Estos actions serán llamados mediante AJAX dentro de la Solicitud de Servicio - INI -->
+		<action name="obtenerEquipo" class="proyecto.struts.action.SolicitudAction" method="ObtenerEquipo">
+			<result name="success" type="tiles">solicitud</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Estos actions serán llamados mediante AJAX dentro de la Solicitud de Servicio - FIN -->
+		
+		
+		<!-- Acciones para Tabla Orden de trabajo - INI -->
+		<action name="trabajos"	class="proyecto.struts.action.TrabajoAction" method="ListaTrabajos">
+			<result name="success" type="tiles">trabajoList</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="trabajo" class="proyecto.struts.action.TrabajoAction">
+			<result name="success" type="tiles">trabajoForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="ObtenerSolicitud"	class="proyecto.struts.action.TrabajoAction" method="ObtenerSolicitud">
+			<result name="success" type="tiles">trabajoForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="InsertaTrabajo" class="proyecto.struts.action.TrabajoAction" method="InsertaorActualizaTrabajo">
+			<result name="success" type="redirectAction">trabajos</result>
+			<result name="error" type="tiles">trabajoForm</result>
+		</action>
+		<action name="eliminarTrabajo" class="proyecto.struts.action.TrabajoAction" method="eliminarTrabajo">
+			<result name="success" type="redirectAction">trabajoList</result>
+			<result name="error">logueo</result>
+		</action>
+		<!-- Acciones para Tabla Orden de trabajo - INI -->
+		
+		<!-- Estos actions serán llamados mediante AJAX dentro de la Orden de Trabajo - INI -->
+		<action name="ObtenerPaquete" class="proyecto.struts.action.TrabajoAction" method="ObtenerPaquete">
+			<result name="success">/portal/post_venta/AjaxResult.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="ObtenerTecnico" class="proyecto.struts.action.TrabajoAction" method="ObtenerTecnico">
+			<result name="success">/portal/post_venta/AjaxResult1.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Estos actions serán llamados mediante AJAX dentro de la Orden de Trabajo - INI -->
+	
+		
+		<!-- Acciones para la Orden de liquidación - INI -->
+		<action name="liquidaciones" class="proyecto.struts.action.LiquidacionAction" method="Listaliquidaciones">
+			<result name="success" type="tiles">liquidacionList</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="AddorUpdateLiquidacion" class="proyecto.struts.action.LiquidacionAction">
+			<result name="success" type="tiles">liquidacionForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="ObtenerDivOrdenes" class="proyecto.struts.action.LiquidacionAction" method="ObtenerDivOrdenes">
+			<result name="success">/portal/liquidacion/AjaxPaquetesBusc.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="agregarOrdenes" class="proyecto.struts.action.LiquidacionAction" method="agregarOrdenes">
+			<result name="success" type="tiles">liquidacionForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="InsertaLiquidacion" class="proyecto.struts.action.LiquidacionAction" method="AddorUpdateLiquidacion">
+			<result name="success" type="redirectAction">liquidaciones</result>
+			<result name="error" type="tiles">liquidacionForm</result>
+		</action>
+		<action name="eliminarLiquidacion" class="proyecto.struts.action.LiquidacionAction" method="eliminarLiquidacion">
+			<result name="success" type="redirectAction">liquidaciones</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Acciones para la Orden de liquidación - FIN -->
+		
+		
+		<!-- Acciones para la Prefacturas - INI -->
+		<action name="prefacturas" class="proyecto.struts.action.PreFacturaAction" method="Listaprefacturas">
+			<result name="success" type="tiles">preFacturaList</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="AddorUpdatePreFactura" class="proyecto.struts.action.PreFacturaAction" method="AddorUpdatePreFactura">
+			<result name="success" type="tiles">preFacturaForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="CargaDatosLiq" class="proyecto.struts.action.PreFacturaAction" method="CargaDatosLiq">
+			<result name="success" type="tiles">preFacturaForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="grabarPrefactura"	class="proyecto.struts.action.PreFacturaAction" method="grabarPrefactura">
+			<result name="success" type="redirectAction" >prefacturas</result>
+			<result name="frm" type="tiles" >liquidacionForm</result>
+		</action>
+		<!-- Acciones para la Prefacturas - FIN -->
+		
+		
+		<!-- Acciones para Tabla Paquete - INI -->
+		<action name="paquetes"	class="proyecto.struts.action.PaqueteAction" method="ListaPaquetes">
+			<result name="success" type="tiles">paqueteList</result>
+			<result name="error" >logueo.jsp</result>
+		</action>
+		<action name="paquete" class="proyecto.struts.action.PaqueteAction">
+			<result name="success" type="tiles">paqueteForm</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="insertarPaquete"	class="proyecto.struts.action.PaqueteAction" method="insertaActualizaPaquete">
+			<result name="success" type="redirectAction">paquetes</result>
+			<result name="error" type="tiles">paqueteForm</result>
+		</action>
+		<action name="eliminarPaquete"	class="proyecto.struts.action.PaqueteAction" method="eliminarPaquete">
+			<result name="success" type="redirectAction">paquetes</result>
+			<result name="error" type="tiles">paqueteForm</result>
+		</action>
+		<!-- Acciones para Tabla Paquete - FIN -->
+		
+		
+		<!-- Estos actions serán llamados mediante AJAX dentro del Mantenimiento de Paquetes - INI -->
+		<action name="ObtenerModelos" class="proyecto.struts.action.PaqueteAction" method="ObtenerModelos">
+			<result name="success">/portal/paquete/AjaxcboModelo.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="ObtenerHerramienta" class="proyecto.struts.action.PaqueteAction" method="ObtenerHerramienta">
+			<result name="success">/portal/paquete/AjaxHerramienta.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="ObtenerMaterial" class="proyecto.struts.action.PaqueteAction" method="ObtenerMaterial">
+			<result name="success">/portal/paquete/AjaxMaterial.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="ObtenerActividad"	class="proyecto.struts.action.PaqueteAction" method="ObtenerActividad">
+			<result name="success">/portal/paquete/AjaxActividad.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="CalcularPrecio" class="proyecto.struts.action.PaqueteAction" method="CalcularPrecio">
+			<result name="success">/portal/paquete/AjaxCalcularPrecio.jsp</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Estos actions serán llamados mediante AJAX dentro del Mantenimiento de Paquetes - FIN -->
+		
+		
+		<!-- Acciones para Tabla Usuario - INI -->
+		<action name="usuarios" class="proyecto.struts.action.UsuarioAction" method="ListaUsuarios">
+			<result name="success" type="tiles">usuarios</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="usuario" class="proyecto.struts.action.UsuarioAction">
+			<result name="success" type="tiles">usuario</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="insertaUsuario" class="proyecto.struts.action.UsuarioAction" method="insertaActualizaUsuario">
+			<result name="success" type="redirectAction">usuarios</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="eliminarUsuario" class="proyecto.struts.action.UsuarioAction" method="EliminaUsuario">
+			<result name="success" type="redirectAction">usuarios</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="bloquearUsuario" class="proyecto.struts.action.UsuarioAction" method="bloquearUsuario">
+			<result name="success" type="redirectAction">usuarios</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="desBloquearUsuario" class="proyecto.struts.action.UsuarioAction" method="desBloquearUsuario">
+			<result name="success" type="redirectAction">usuarios</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="cambiaPwd" class="proyecto.struts.action.UsuarioAction" method="cambiaPwd">
+			<result name="success" type="tiles">cambioPass</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Acciones para Tabla Usuario - FIN -->
+		
+		
+		<!-- Acciones para Tabla Clientes - INI -->
+		<action name="clientes" class="proyecto.struts.action.ClienteAction" method="ListaClientes">
+			<result name="success" type="tiles">clientes</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="cliente" class="proyecto.struts.action.ClienteAction">
+			<result name="success" type="tiles">cliente</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="insertaCliente" class="proyecto.struts.action.ClienteAction" method="insertaActualizaCliente">
+			<result name="success" type="redirectAction">clientes</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<action name="eliminarCliente" class="proyecto.struts.action.ClienteAction" method="eliminaCliente">
+			<result name="success" type="redirectAction">clientes</result>
+			<result name="error">logueo.jsp</result>
+		</action>
+		<!-- Acciones para Tabla Clientes - FIN -->
+		
+		
+		<!-- Acciones para los popups de Solicitud de Servicio - INI  -->
+		<action name="popBuscarEquipos"	class="proyecto.struts.action.EquipoAction" method="popBuscarEquipos" >
+			<result name="success">/portal/buscar/BuscarEquipo.jsp</result>
+			<result name="error">/portal/buscar/BuscarEquipo.jsp</result>
+		</action>
+		<!-- Acciones para los popups de Solicitud de Servicio - INI  -->
+		
+		
+		<!-- Acciones para los popups de Orden de Trabajo - INI -->
+		<action name="popBuscarSolicitud" class="proyecto.struts.action.SolicitudAction" method="popBuscarSolicitud" >
+			<result name="success">/portal/buscar/BuscarSolicitudServ.jsp</result>
+			<result name="error">/portal/buscar/BuscarSolicitudServ.jsp</result>
+		</action>
+		<action name="popBuscarPaquete"	class="proyecto.struts.action.PaqueteAction" method="popBuscarPaquete">
+			<result name="success">/portal/buscar/BuscarPaquete.jsp</result>
+			<result name="error">/portal/buscar/BuscarPaquete.jsp</result>
+		</action>
+		<action name="popBuscarTecnico"	class="proyecto.struts.action.TecnicoAction" method="popBuscarTecnico">
+			<result name="success">/portal/buscar/BuscarTecnico.jsp</result>
+			<result name="error">/portal/buscar/BuscarTecnico.jsp</result>
+		</action>
+		<!-- Acciones para los popups de Orden de Trabajo - FIN -->
+		
+		
+		<!-- Acciones para el Reporte - INI  -->
+		<action name="reportes" class="proyecto.struts.action.ReporteAction" >
+			<result name="success" type="tiles">reportes</result>
+		</action>
+		<!-- Acciones para el Reporte - FIN  -->
+	</package>
+</struts>

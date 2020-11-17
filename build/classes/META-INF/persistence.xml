@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="MI_PERSISTENCIA"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<!-- <jta-data-source>java:comp/env/jdbc/maskiner</jta-data-source> -->
+
+		<class>proyecto.struts.bean.Equipohorometro</class>
+		<class>proyecto.struts.bean.Solicitud_has_estado</class>
+		<class>proyecto.struts.bean.Usuario</class>
+		<class>proyecto.struts.bean.Menu</class>
+		<class>proyecto.struts.bean.Area</class>
+		<class>proyecto.struts.bean.AreaMenu</class>
+		<class>proyecto.struts.bean.Modelo</class>
+		<class>proyecto.struts.bean.ClaseEquipo</class>
+		<class>proyecto.struts.bean.Equipo</class>
+		<class>proyecto.struts.bean.Solicitud</class>
+		<class>proyecto.struts.bean.Cliente</class>
+		<class>proyecto.struts.bean.Paquete</class>
+		<class>proyecto.struts.bean.Ordentrabajo</class>
+		<class>proyecto.struts.bean.Tecnico</class>
+		<class>proyecto.struts.bean.Paquetes_has_ordentrabajo</class>
+		<class>proyecto.struts.bean.Ordentrabajo_has_tecnicos</class>
+		<class>proyecto.struts.bean.Estado</class>
+		<class>proyecto.struts.bean.Marca</class>
+		<class>proyecto.struts.bean.Paquetesherramientas</class>
+		<class>proyecto.struts.bean.Paquetesmateriales</class>
+		<class>proyecto.struts.bean.Paquetesactividades</class>
+		<class>proyecto.struts.bean.Paquetes_has_paquetesactividades</class>
+		<class>proyecto.struts.bean.Paquetes_has_paquetesherramientas</class>
+		<class>proyecto.struts.bean.Paquetes_has_paquetesmateriales</class>
+		<class>proyecto.struts.bean.Especialidad</class>
+		<class>proyecto.struts.bean.Ordenliquidacion</class>
+		<class>proyecto.struts.bean.Prefactura</class>
+		<class>proyecto.struts.bean.Detalleprefactura</class>
+
+		<properties>
+			<!-- <property name="eclipselink.session.customizer" value="org.eclipse.persistence.example.unified.integration.JPAEclipseLinkSessionCustomizer"/> -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/grupodaw?useTimezone=true&amp;serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="root" />
+			<property name="eclipselink.logging.level" value="FINEST" />
+			<property name="eclipselink.allow-zero-id" value="true" />
+			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> 
+				<property name="eclipselink.ddl-generation.output-mode" value="database"/> -->
+		</properties>
+
+	</persistence-unit>
+</persistence>

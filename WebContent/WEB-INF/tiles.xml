@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout" template="portal/principal.jsp">
+    	<put-attribute name="title"  value="Template"/>
+    	<put-attribute name="header" value="/portal/header.jsp"/>
+    	<put-attribute name="status" value="/portal/status.jsp"/>
+    	<put-attribute name="menu"   value="/portal/menu.jsp"/>
+    	<put-attribute name="body"   value="/portal/body01.jsp"/>
+    	<put-attribute name="footer"   value="/portal/pie.jsp"/>
+	</definition>
+  
+	<definition name="welcome" extends="baseLayout">
+    	<put-attribute name="title"  value="Welcome"/>
+    	<put-attribute name="body"   value="/portal/body02.jsp"/>      
+	</definition>
+  
+	<definition name="solicitudList" extends="baseLayout">
+    	<put-attribute name="title"  value="Solicitudes de Servicio"/>
+    	<put-attribute name="body"   value="/portal/servicio_comercial/ListSolicitudServicio.jsp"/>      
+	</definition>
+	<definition name="solicitud" extends="baseLayout">
+    	<put-attribute name="title"  value="Solicitudes de Servicio"/>
+    	<put-attribute name="body"   value="/portal/servicio_comercial/SolicitudServicio.jsp"/>      
+	</definition>
+  
+  
+	<definition name="trabajoList" extends="baseLayout">
+		<put-attribute name="title" value="Ordenes de Trabajo" />
+		<put-attribute name="body" value="/portal/post_venta/ListGenerar_Orden_Trabajo.jsp" />
+	</definition>
+	<definition name="trabajoForm" extends="baseLayout">
+		<put-attribute name="title" value="Orden de Trabajo" />
+		<put-attribute name="body" value="/portal/post_venta/Generar_Orden_Trabajo.jsp" />
+	</definition>
+
+
+	<definition name="paqueteList" extends="baseLayout">
+		<put-attribute name="title" value="Mantenimiento de paquetes" />
+		<put-attribute name="body" value="/portal/paquete/ListPaquete.jsp" />
+	</definition>
+	<definition name="paqueteForm" extends="baseLayout">
+		<put-attribute name="title" value="Mantenimiento de paquetes" />
+		<put-attribute name="body" value="/portal/paquete/paqueteForm.jsp" />
+	</definition>
+  
+  
+	<definition name="liquidacionList" extends="baseLayout">
+    	<put-attribute name="title"  value="Ordenes de Liquidacion"/>
+    	<put-attribute name="body"   value="/portal/liquidacion/ListOrdenLiquidacion.jsp"/>      
+	</definition>
+	<definition name="liquidacionForm" extends="baseLayout">
+    	<put-attribute name="title"  value="Ordenes de Liquidacion"/>
+    	<put-attribute name="body"   value="/portal/liquidacion/OrdenLiquidacionForm.jsp"/>      
+	</definition>
+  
+  
+   	<definition name="preFacturaList" extends="baseLayout">
+		<put-attribute name="title" value="Pre Factura" />
+		<put-attribute name="body" value="/portal/preFactura/ListPreFactura.jsp" />
+	</definition>
+	<definition name="preFacturaForm" extends="baseLayout">
+		<put-attribute name="title" value="Pre Factura" />
+		<put-attribute name="body" value="/portal/preFactura/PreFacturaForm.jsp" />
+	</definition>
+  
+
+    <definition name="permisos" extends="baseLayout">
+      <put-attribute name="title"  value="Permisos de Usuarios"/>
+      <put-attribute name="body"   value="/portal/user/permisos.jsp"/>      
+	</definition>
+	<definition name="usuarios" extends="baseLayout">
+		<put-attribute name="title" value="Mantenimiento de Usuarios" />
+		<put-attribute name="body" value="/portal/user/listUsuarios.jsp" />
+	</definition>
+	<definition name="usuario" extends="baseLayout">
+		<put-attribute name="title" value="Mantenimiento de Usuarios" />
+		<put-attribute name="body" value="/portal/user/UsuarioM.jsp" />
+	</definition>
+	<definition name="cambioPass" extends="baseLayout">
+    	<put-attribute name="title"  value="Cambio de contraseña"/>
+    	<put-attribute name="body"   value="/portal/user/cambioPass.jsp"/>      
+	</definition>
+	<definition name="clientes" extends="baseLayout">
+    	<put-attribute name="title"  value="Mantenimiento de Clientes"/>
+    	<put-attribute name="body"   value="/portal/client/listClientes.jsp"/>      
+	</definition>
+	<definition name="cliente" extends="baseLayout">
+    	<put-attribute name="title"  value="Mantenimiento de Clientes"/>
+    	<put-attribute name="body"   value="/portal/client/ClienteM.jsp"/>      
+	</definition>
+  
+  
+	<definition name="reportes" extends="baseLayout">
+    	<put-attribute name="title"  value="Reporte"/>
+    	<put-attribute name="body"   value="/portal/reportes/rptForm01.jsp"/>      
+	</definition>
+</tiles-definitions>

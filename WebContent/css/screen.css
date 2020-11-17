@@ -1,0 +1,14 @@
+@import url("displaytag.css");
+
+@import url("alternative.css");
+
+acronym,,span,a,code
+	{
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	list-style-type: none;
+}
+
+
